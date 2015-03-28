@@ -2,6 +2,9 @@
  * Created by lpc on 28/03/15.
  */
 
+fs = require('fs');
+path = require('path');
+
 function getMessage(response){
     response.writeHead(404, {"Content-Type": "text/plain"});
     response.write("From The Expanded App");
@@ -9,9 +12,16 @@ function getMessage(response){
 }
 
 function getPicture(response){
-    response.writeHead(404, {"Content-Type": "text/plain"});
-    response.write("No pic available");
-    response.end();
+    //var picturePathText = path.join(_dirName, );
+    if (fs.existsSync('./orangeBirthday.jpeg'))
+    {
+        var img = fs.readFileSync('./orangeBirthday.jpeg');
+    }
+
+
+    response.writeHead(404, {"Content-Type": "image/jpeg"});
+    response.end(img);
+
 }
 
 function getMusic(response){
